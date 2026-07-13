@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>台灣收納盒尺寸搜尋</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="search-panel" aria-labelledby="site-title">
+        <div class="intro">
+          <p class="eyebrow">台灣收納盒尺寸搜尋</p>
+          <h1 id="site-title">找得到放得下的收納盒</h1>
+          <p class="lead">輸入你的櫃子、抽屜或層架可用空間，快速反查台灣買得到的收納盒。</p>
+        </div>
+
+        <form class="dimension-form" id="dimension-form">
+          <label>
+            <span>寬度</span>
+            <input id="space-width" type="number" min="1" step="0.1" value="40" inputmode="decimal" />
+            <small>cm</small>
+          </label>
+
+          <label>
+            <span>深度</span>
+            <input id="space-depth" type="number" min="1" step="0.1" value="35" inputmode="decimal" />
+            <small>cm</small>
+          </label>
+
+          <label>
+            <span>高度</span>
+            <input id="space-height" type="number" min="1" step="0.1" value="20" inputmode="decimal" />
+            <small>cm</small>
+          </label>
+
+          <button type="submit">搜尋收納盒</button>
+        </form>
+      </section>
+
+      <section class="toolbar" aria-label="商品篩選">
+        <div>
+          <p class="result-count" id="result-count">符合 0 個收納盒</p>
+          <p class="hint" id="result-hint">以外部尺寸寬 × 深 × 高判斷是否放得下。</p>
+        </div>
+
+        <div class="filters">
+          <label>
+            <span>通路</span>
+            <select id="channel-filter">
+              <option value="all">全部</option>
+            </select>
+          </label>
+
+          <label class="checkbox">
+            <input id="lid-filter" type="checkbox" />
+            <span>有蓋</span>
+          </label>
+
+          <label class="checkbox">
+            <input id="stack-filter" type="checkbox" />
+            <span>可堆疊</span>
+          </label>
+        </div>
+      </section>
+
+      <section class="products" id="product-list" aria-live="polite"></section>
+    </main>
+
+    <script src="products.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
