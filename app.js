@@ -94,11 +94,13 @@ function renderProducts(items) {
           <h2>${product.name}</h2>
         </div>
 
+        <div class="size-badge" aria-label="商品外尺寸">
+          <span><small>寬</small><strong>${formatNumber(product.widthCm)}</strong></span>
+          <span><small>深</small><strong>${formatNumber(product.depthCm)}</strong></span>
+          <span><small>高</small><strong>${formatNumber(product.heightCm)}</strong></span>
+        </div>
+
         <dl class="specs">
-          <div>
-            <dt>尺寸</dt>
-            <dd>寬 ${formatNumber(product.widthCm)} × 深 ${formatNumber(product.depthCm)} × 高 ${formatNumber(product.heightCm)} cm</dd>
-          </div>
           <div>
             <dt>價格</dt>
             <dd>${formatPrice(product.priceTwd)}</dd>
@@ -106,6 +108,10 @@ function renderProducts(items) {
           <div>
             <dt>通路</dt>
             <dd>${product.channel}</dd>
+          </div>
+          <div>
+            <dt>型號</dt>
+            <dd>${product.model}</dd>
           </div>
         </dl>
 
