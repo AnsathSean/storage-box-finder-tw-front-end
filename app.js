@@ -10,6 +10,8 @@ const resultHint = document.querySelector("#result-hint");
 const productList = document.querySelector("#product-list");
 
 function formatPrice(price) {
+  if (price == null || Number.isNaN(Number(price))) return "價格待確認";
+
   return new Intl.NumberFormat("zh-TW", {
     style: "currency",
     currency: "TWD",
@@ -18,6 +20,7 @@ function formatPrice(price) {
 }
 
 function formatNumber(value) {
+  if (value == null || Number.isNaN(Number(value))) return "待確認";
   return Number.isInteger(value) ? String(value) : String(value.toFixed(1));
 }
 
@@ -33,6 +36,10 @@ function getSearchParams() {
 }
 
 function fitsSpace(product, params) {
+  if ([product.widthCm, product.depthCm, product.heightCm].some((value) => value == null)) {
+    return false;
+  }
+
   return (
     product.widthCm <= params.width &&
     product.depthCm <= params.depth &&
@@ -48,6 +55,10 @@ function matchesFilters(product, params) {
 }
 
 function getFitScore(product, params) {
+  if ([product.widthCm, product.depthCm, product.heightCm].some((value) => value == null)) {
+    return 0;
+  }
+
   const widthUse = product.widthCm / params.width;
   const depthUse = product.depthCm / params.depth;
   const heightUse = product.heightCm / params.height;
@@ -86,8 +97,12 @@ function renderProducts(items) {
   items.forEach((product) => {
     const card = document.createElement("article");
     card.className = "product-card";
+    const productMedia = product.imageUrl
+      ? `<img src="${product.imageUrl}" alt="${product.name}" loading="lazy" />`
+      : `<div class="product-image-placeholder" role="img" aria-label="${product.name} 圖片待確認"><span>圖片待確認</span></div>`;
+
     card.innerHTML = `
-      <img src="${product.imageUrl}" alt="${product.name}" loading="lazy" />
+      ${productMedia}
       <div class="product-body">
         <div class="product-heading">
           <p>${product.brand}</p>
@@ -118,6 +133,7 @@ function renderProducts(items) {
         <div class="tags">
           <span>${product.category}</span>
           <span>${product.material}</span>
+          ${product.color && product.color !== "未標示" ? `<span>${product.color}</span>` : ""}
           ${product.hasLid ? "<span>有蓋</span>" : ""}
           ${product.isTransparent ? "<span>透明</span>" : ""}
           ${product.isStackable ? "<span>可堆疊</span>" : ""}

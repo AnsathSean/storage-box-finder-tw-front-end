@@ -14,8 +14,10 @@
         <p class="lead">輸入櫃子、抽屜或層架的可用空間，快速反查台灣買得到的收納盒。</p>
       </header>
 
-      <div class="catalog-layout">
-        <aside class="search-panel" aria-label="尺寸搜尋">
+      <section class="search-stage" aria-label="尺寸搜尋與廣告區">
+        <aside class="ad-space" aria-hidden="true"></aside>
+
+        <div class="search-panel" aria-label="尺寸搜尋">
           <div class="panel-heading">
             <h2>外尺寸搜尋</h2>
             <p>以寬、深、高比對可放入的商品。</p>
@@ -42,37 +44,39 @@
 
             <button type="submit">搜尋收納盒</button>
           </form>
-        </aside>
-
-        <div class="catalog-main">
-          <section class="toolbar" aria-label="商品篩選">
-            <div>
-              <p class="result-count" id="result-count">符合 0 個收納盒</p>
-              <p class="hint" id="result-hint">以外部尺寸寬 × 深 × 高判斷是否放得下。</p>
-            </div>
-
-            <div class="filters">
-              <label>
-                <span>通路</span>
-                <select id="channel-filter">
-                  <option value="all">全部</option>
-                </select>
-              </label>
-
-              <label class="checkbox">
-                <input id="lid-filter" type="checkbox" />
-                <span>有蓋</span>
-              </label>
-
-              <label class="checkbox">
-                <input id="stack-filter" type="checkbox" />
-                <span>可堆疊</span>
-              </label>
-            </div>
-          </section>
-
-          <section class="products" id="product-list" aria-live="polite"></section>
         </div>
+
+        <aside class="ad-space" aria-hidden="true"></aside>
+      </section>
+
+      <div class="catalog-main">
+        <section class="toolbar" aria-label="商品篩選">
+          <div>
+            <p class="result-count" id="result-count">符合 0 個收納盒</p>
+            <p class="hint" id="result-hint">以外部尺寸寬 × 深 × 高判斷是否放得下。</p>
+          </div>
+
+          <div class="filters">
+            <label>
+              <span>通路</span>
+              <select id="channel-filter">
+                <option value="all">全部</option>
+              </select>
+            </label>
+
+            <label class="checkbox">
+              <input id="lid-filter" type="checkbox" />
+              <span>有蓋</span>
+            </label>
+
+            <label class="checkbox">
+              <input id="stack-filter" type="checkbox" />
+              <span>可堆疊</span>
+            </label>
+          </div>
+        </section>
+
+        <section class="products" id="product-list" aria-live="polite"></section>
       </div>
     </main>
 

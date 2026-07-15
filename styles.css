@@ -85,12 +85,13 @@ h1 {
   line-height: 1.7;
 }
 
-.catalog-layout {
+.search-stage {
   display: grid;
-  grid-template-columns: 286px minmax(0, 1fr);
+  grid-template-columns: minmax(160px, 1fr) minmax(320px, 360px) minmax(160px, 1fr);
   gap: 22px;
-  align-items: start;
-  padding-top: 22px;
+  align-items: stretch;
+  padding: 22px 0;
+  min-height: 260px;
 }
 
 .search-panel,
@@ -102,8 +103,7 @@ h1 {
 }
 
 .search-panel {
-  position: sticky;
-  top: 16px;
+  align-self: start;
 }
 
 .panel-heading {
@@ -122,6 +122,10 @@ h1 {
   color: var(--muted);
   font-size: 0.88rem;
   line-height: 1.55;
+}
+
+.ad-space {
+  min-height: 100%;
 }
 
 .dimension-form {
@@ -251,17 +255,29 @@ h1 {
   min-width: 0;
 }
 
-.product-card img {
+.product-card img,
+.product-image-placeholder {
   display: block;
   width: 100%;
   aspect-ratio: 1 / 0.76;
-  object-fit: cover;
   background:
     linear-gradient(90deg, rgba(29, 111, 95, 0.08) 1px, transparent 1px),
     linear-gradient(180deg, rgba(29, 111, 95, 0.08) 1px, transparent 1px),
     var(--soft-strong);
   background-size: 18px 18px;
   border-bottom: 1px solid var(--line);
+}
+
+.product-card img {
+  object-fit: cover;
+}
+
+.product-image-placeholder {
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 900;
 }
 
 .product-body {
@@ -409,24 +425,13 @@ h1 {
 }
 
 @media (max-width: 960px) {
-  .catalog-layout {
-    grid-template-columns: 1fr;
+  .search-stage {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 380px) minmax(0, 1fr);
+    gap: 12px;
   }
 
-  .search-panel {
-    position: static;
-  }
-
-  .dimension-form {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .dimension-form label {
-    border-right: 1px solid var(--line);
-  }
-
-  .dimension-form button {
-    grid-column: 1 / -1;
+  .ad-space {
+    min-width: 0;
   }
 
   .products {
@@ -448,13 +453,18 @@ h1 {
     font-size: 2rem;
   }
 
-  .dimension-form,
+  .search-stage,
   .products {
     grid-template-columns: 1fr;
   }
 
-  .dimension-form label {
-    border-right: 0;
+  .search-stage {
+    padding-top: 18px;
+    min-height: 0;
+  }
+
+  .ad-space {
+    display: none;
   }
 
   .toolbar {
